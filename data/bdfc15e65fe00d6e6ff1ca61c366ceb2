@@ -1,0 +1,87 @@
+åq´ì
+UPÏ³ªãXvı{]:§*lİeŠ’‡ãZš³b3|aGŸ~]åŒr;]Úi¦AğKi>'Êÿ:©Åöùá[ã'—ğö³#ŠÓ(šªŸ
+xí@RÌtÈI«ö€O¤/~¡°±]€›P­ŠÉ ÃÊX©ƒ&Œ‹]¸tæÊè-0¥ævÉ}/Cç¬rêqp\ˆäÒ^F}À!ÄıF)Ò¦!Ô7â¡^¡Buš[`¡µf0rW¹qµvËTWìènj¬¿,µ2uú¾Ÿ¦·oXZkªÿ‡SÛs^¬Ü¨Æóc8·ê£ç†xcDW@Y5(E%Ôï#ãIÕîŞÙJaR}áWó~˜’™c¬{ßŸ`„MÖ\"Ü ív>‚ô«p"!¯³R¥mx±Å¨CÊÉÀâ	¡÷‹>ÿ§µ+ë,¾QáÇõ©Œl­¯b:­L:ÄA^Å‘ı[÷kÄå¶{›c‡=,;báËêhG:iÿ)e¬ÚJÒlüU˜àı¿ûur&ß@oiQ´ø§Æİ•ì±eûwYÊÅñÕ€*˜§‡ø€pZÕ°\:0É©p“SŞ9ô²h1-¸õÃxBÁ¼ tšUâÁ×QpÓÁÏÚµ¢:5¤¼»,”IxaË‘Cr cnt = 0,loaded;
+aplayer.innerHTML = 0 + "/" + arr.length*2;
+for(var i = 0; i < arr.length;i++){
+    const j = i;
+    const xhr =new XMLHttpRequest
+    xhr.responseType = "blob";
+    xhr.open("GET",arr[i]);
+    xhr.onload = function(){
+        arr[j] = URL.createObjectURL(xhr.response);
+        if(!loaded) aplayer.innerHTML = cnt + '/' + arr.length*2
+        if(++cnt == arr.length){
+            loadMusic()
+        }
+    }
+    xhr.send()
+}
+function loadMusic(){
+    for(var i = 0; i < brr.length;i++){
+        const j = i;
+        const xhr =new XMLHttpRequest
+        xhr.responseType = "blob";
+        xhr.open("GET",brr[i]);
+        xhr.onload = function(){
+            brr[j] = URL.createObjectURL(xhr.response);
+            if(!loaded) aplayer.innerHTML = cnt + '/' + brr.length*2
+            if(++cnt == brr.length * 2){
+                load()
+            }
+        }
+        xhr.onerror = function(){
+            if(++cnt == brr.length * 2){
+                load()
+            }
+        }
+        xhr.send()
+    }
+    setTimeout(load,16000);
+}
+function load(){
+    if(loaded) return;
+    loaded = 1;
+    if(navigator.userAgent.indexOf("Mobile")!=-1){
+        document.body.style.zoom = "1.2"
+        zoom = 1.2
+    }else{
+        document.body.style.zoom = "2"
+        zoom = 2
+    }
+    const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+        audio: [{
+            name: 'é“¶æ²³ä¸æ˜Ÿæ–—ã€å…°éŸ³ç¿»å”±ã€‘',
+            artist: 'å…°éŸ³Reine',
+            url: 'é“¶æ²³ä¸æ˜Ÿæ–—.flac',
+            cover: arr[0],
+        },{
+            name: 'ä¸é—®å¤©ã€å…°éŸ³ç¿»å”±ã€‘',
+            artist: 'å…°éŸ³Reine',
+            url: 'ä¸é—®å¤©.flac',
+            cover: arr[1]
+        },{
+            name: 'æ˜¥æ„çº¢åŒ…',
+            artist: 'å…°éŸ³Reine&å°æŸ”',
+            url: 'æ˜¥æ„çº¢åŒ….m4a',
+            cover: arr[2]
+        },{
+            name: 'èµ´çƒ½çƒŸ',
+            artist: 'å…°éŸ³Reine',
+            url: 'èµ´çƒ½çƒŸ.mp3',
+            cover: arr[3]
+        },{
+            name: 'å­¤å‹‡è€…ã€å…°éŸ³ç¿»å”±ã€‘',
+            artist: 'å…°éŸ³Reine',
+            url: 'å­¤å‹‡è€….mp3',
+            cover: arr[4]
+        },{
+            name: 'å¥¢é¦™å¤«äººã€å…°éŸ³ç¿»å”±ã€‘',
+            artist: 'å…°éŸ³Reine',
+            url: 'å¥¢é¦™å¤«äºº.mp3',
+            cover: arr[5]
+        }]
+    });
+}
+
+</script>
